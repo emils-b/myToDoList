@@ -38,7 +38,7 @@
       //query var kā atsevišķu mainigo rakstit
       //jāpārbauda vai vispār atdod rindu, skatīt linku zemāk
       //https://www.w3schools.com/php/php_mysql_select.asp
-      include "index.html"
+      //include "index.html"
       //$id = intval($_GET['id']);
       $sql = "SELECT * FROM tasks WHERE id=$id";
       //$sql = "SELECT * FROM tasks WHERE id IN (8)";
