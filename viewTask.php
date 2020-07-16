@@ -1,60 +1,61 @@
-<!DOCTYPE html>
 <?php
-//izveidos kā atsevišķu objektu un servera parametri jānorāda kā atsevišķi mainīgie
-    // initialize errors variable
-	$errors = "";
+include_once "classes/TasksView.php";
+include_once "classes/TasksContr.php";
 
-	// connect to database
-	$db = mysqli_connect("localhost", "root", "", "mytodolist");
+$task = new TasksView();
+$taskC = new TasksContr();
 
-	if (isset($_POST['submit'])) {
-		if (empty($_POST['task'])) {
-			$errors = "You must fill in the task";
-		}else{
-			$task = $_POST['task'];
-			$sql = "INSERT INTO tasks (task) VALUES ('$task')";
-			mysqli_query($db, $sql);
-			header('location: addTask.php');
-		}
-	}
-  ?>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <title>MyToDoList</title>
-  </head>
-  <body>
-    <div>
-      <h1>My To Do List</h1>
-      <hr>
+$id = $_GET['viewTask'];
+$task = $task -> showTask($id);
+/*
+if (isset($_GET['viewTask'])){
+  $id = $_GET['viewTask'];
+  $task = $task -> showTask($id);
+}
+*/
+
+if (isset($_POST['submit_task'])) {
+	$name = $_POST['task'];
+	$taskC ->changeTask($name, $id);
+  header('location: index.php');
+}
+
+if (isset($_POST['submit_description'])) {
+	$description = $_POST['description'];
+	$taskC -> changeDescription($description, $id);
+  header('location: index.php');
+}
+
+if (isset($_POST['delete'])) {
+	$taskC -> deleteTask($id);
+  header('location: index.php');
+}
+
+?>
+
+<div class="card mb-1">
+    <div class="col">
+      <div class="col">
+        <div class="card mb-1">
+          <div class="card body text-center">
+            <h5 class="card-title"><?php echo $task['task'] ?></h5>
+            <p class="card-text"> <?php
+            echo $task['description'];
+            ?></p>
+            <form method="post" action="" class="card mb-1">
+  						<input type="text" name="task" class="task_input" value="<?php echo $task['task'] ?>">
+  						<button type="submit" name="submit_task" id="ch_btn" class="add_btn">Save</button>
+  					</form>
+            <form method="post" action="" class="card mb-1">
+              <input type="text" name="description" class="task_input" value="<?php echo $task['description']; ?>">
+              <button type="submit" name="submit_description" id="add_btn" class="add_btn">Save</button>
+            </form>
+            <form method="post" action="" class="card mb-1">
+              <button type="submit" name="delete" id="add_btn" class="add_btn">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <?php
-      //query var kā atsevišķu mainigo rakstit
-      //jāpārbauda vai vispār atdod rindu, skatīt linku zemāk
-      //https://www.w3schools.com/php/php_mysql_select.asp
-      //include "index.html"
-      //$id = intval($_GET['id']);
-      $sql = "SELECT * FROM tasks WHERE id=$id";
-      //$sql = "SELECT * FROM tasks WHERE id IN (8)";
-      $task = mysqli_query($db, $sql);
-      if (mysqli_num_rows($task) > 0) {
-         //output data of each row
-        while($row = mysqli_fetch_assoc($task)) {
-          echo $row['id']. "<br>";
-          echo $row['task'];
-        }
-      }else {
-        echo "0 results";
-      }
-
-      //$conn->close(); jāpačeko vai šis nav jāliek
-      ?>
-    </div>
-  </body>
-</html>
+  </div>
+  <a href="index.php" class="card-link">Go To Start Page</a>

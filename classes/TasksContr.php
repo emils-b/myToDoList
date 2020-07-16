@@ -29,8 +29,8 @@ include_once "Tasks.php";
     }
 
     //deletes task
-    public function deleteTask( $id){
-      $this->deleteTask($id);
+    public function deleteTask($id){
+      $this->deleteTaskById($id);
       echo "DELETED <br>";
     }
 
