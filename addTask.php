@@ -16,8 +16,8 @@ if (isset($_POST['submit'])) {
 			<div class="card mb-1">
 				<div class="card body text-center">
 					<form method="post" action="" class="card mb-1">
-						<input type="text" name="task" class="task_input">
-						<input type="text" name="description" class="task_input">
+						<input type="text" name="task" class="task_input" placeholder="Task">
+						<input type="text" name="description" class="task_input" placeholder="Description">
 						<button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
 					</form>
 				</div>
