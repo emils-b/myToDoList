@@ -14,7 +14,8 @@ include_once "classes/TasksContr.php";
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<title>MyToDoList</title>
 </head>
-<body>
+<body style="background-color: #f9f9fa">
+
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="display-4">My To Do List</h1>
@@ -23,16 +24,17 @@ include_once "classes/TasksContr.php";
 		</div>
 	</div>
 	<div class="container">
-<?php
-if (isset($_GET['viewTask'])){
-	include "viewTask.php";
-}elseif (isset($_GET['addTask'])) {
-	include "addTask.php";
-}else {
-	include "viewAllTasks.php";
-}
- ?>
+		<?php
+		if (isset($_GET['viewTask'])){
+			include "viewTask.php";
+		}elseif (isset($_GET['addTask'])) {
+			include "addTask.php";
+		}else {
+			include "viewAllTasks.php";
+		}
+		?>
 	</div>
 </div>
+
 </body>
 </html>

@@ -1,57 +1,45 @@
 <?php
 include_once "classes/TasksView.php";
 include_once "classes/TasksContr.php";
-
-//onchange="this.form.submit()"
-
 ?>
 
-<div class="card mb-1">
+<div class="card mb-1" style="background-color: #f9f9fa">
   <?php
-  $i=1;
-  $id = NULL;
   $tasks = new TasksView();
-
-  $isDone = NULL;
-  $taskC = new TasksContr();
-
-
   foreach ($tasks -> showTasks() as $task){
     $id=$task['id'];
     ?>
-    <div class="col">
+    <div class="col" >
       <div class="col">
         <div class="card mb-1">
           <div class="card body text-center">
+            <div class="card-header">
             <input type="checkbox" data-todo-id="<?php echo $task['id'] ?>"
-            class="check-box" name="isDone" <?php if ($task['isDone']==1) echo "checked"?>>
-            <h5 class="card-title"><?php echo $i. " " .$task['task'] ?></h5>
-            <small class="card-title"><?php echo $task['dateCreated'] ?></small>
-            <p class="card-text"> <?php
-            echo $task['description'];
-            ?></p>
-            <a href="index.php?viewTask=<?php echo $task['id'] ?>">Edit</a>
+            class="check-box" name="isDone" <?php if ($task['isDone']==1) echo "checked"?>
+            <h5 class="card-title"> <?php echo $task['task'] ?></h5>
+            </div>
+            <p class="card-text"> <?php echo $task['description']?></p>
+            <div class="card-footer"><small class="card-title">Created on <?php echo $task['dateCreated'] ?></small></div>
+            <a href="index.php?viewTask=<?php echo $task['id'] ?>" class="btn btn-light">Edit</a>
           </div>
         </div>
       </div>
     </div>
     <?php
-    $i++;}
+    }
     ?>
-    <a href="index.php?addTask=<?php echo $task['id']+1?>" class="card-link">Add new task</a>
+    <a href="index.php?addTask=<?php echo $task['id']+1?>" class="btn btn-secondary">Add new task</a>
   </div>
+
   <script>
-    $(document).ready(function(){
-      $(".check-box").click(function(e){
-        const id = $(this).attr('data-todo-id');
-        $.post('check.php',
-            {
-              id: id
-            },
-            //(data) =>{
-              //alert(data);
-            //}
-        );
-      })
-    });
-  </script>
+  $(document).ready(function(){
+    $(".check-box").click(function(e){
+      const id = $(this).attr('data-todo-id');
+      $.post('functions.php',
+      {
+        id: id
+      }
+    );
+  })
+});
+</script>
