@@ -18,7 +18,7 @@ include_once "classes/TasksContr.php";
 
 	<div class="container">
 		<div class="jumbotron">
-			<h1 class="display-4">My To Do List</h1>
+			<h1 class="display-4">My To Do List App</h1>
 			<p class="lead">For Printful bootcamp</p>
 			<hr>
 		</div>

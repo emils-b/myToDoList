@@ -5,7 +5,7 @@ class DB {
   private $pwd = "";
   private $dbName = "mytodolist";
 
-//handles connection to the database
+  //handles connection to the database
   protected function connect(){
     try {
       $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbName;

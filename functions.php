@@ -28,9 +28,14 @@ if(isset($_POST['id'])){
 //for form from addTask.php to create new task
 function createTaskFromPage($task){
   if (isset($_POST['submit'])) {
-  	$name = $_POST['task'];
-  	$description = $_POST['description'];
-  	$task -> createTask($name, $description);
+    $name = $_POST['task'];
+    $description = $_POST['description'];
+    if ($name==''){
+      echo "Task field should be filled";
+    }else {
+      $task -> createTask($name, $description);
+      header("Location: index.php");
+    }
   }
 }
 
@@ -38,7 +43,7 @@ function createTaskFromPage($task){
 //for form from viewTask.php to delete task
 function deleteTaskFromPage($taskC, $id){
   if (isset($_POST['delete'])) {
-  	$taskC -> deleteTask($id);
+    $taskC -> deleteTask($id);
     header('location: index.php');
   }
 }
@@ -46,10 +51,10 @@ function deleteTaskFromPage($taskC, $id){
 //for form from viewTask.php to change task
 function changeTaskFromPage($taskC, $id){
   if (isset($_POST['submit_ch'])) {
-  	$description = $_POST['description'];
+    $description = $_POST['description'];
     $name = $_POST['task'];
-  	$taskC ->changeTask($name, $id);
-  	$taskC -> changeDescription($description, $id);
+    $taskC ->changeTask($name, $id);
+    $taskC -> changeDescription($description, $id);
     header('location: index.php');
   }
 }

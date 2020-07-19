@@ -3,6 +3,7 @@ include_once "classes/TasksView.php";
 include_once "classes/TasksContr.php";
 ?>
 
+<!--This page shows all tasks -->
 <div class="card mb-1" style="background-color: #f9f9fa">
   <?php
   $tasks = new TasksView();
@@ -28,7 +29,7 @@ include_once "classes/TasksContr.php";
     <?php
     }
     ?>
-    <a href="index.php?addTask=<?php echo $task['id']+1?>" class="btn btn-secondary">Add new task</a>
+    <a href="index.php?addTask=new" class="btn btn-secondary">Add new task</a>
   </div>
 
   <script>

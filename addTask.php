@@ -5,10 +5,9 @@ include_once "functions.php";
 
 $task = new TasksContr();
 createTaskFromPage($task);
-
-
 ?>
 
+<!--Page to create new task -->
 <div class="card mb-1">
 	<form method="post" action="" class="card mb-1">
 		<input type="text" name="task" class="task_input" placeholder="Task">
@@ -18,4 +17,4 @@ createTaskFromPage($task);
 </div>
 
 
-<a href="index.php" class="card-link">Go To Start Page</a>
+<a href="index.php" class="card-link">See all tasks</a>

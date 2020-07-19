@@ -13,10 +13,11 @@ changeTaskFromPage($taskC, $id);
 
 ?>
 
+<!--Page to edit task-->
 <div class="card mb-1">
 
   <form method="post" action="" class="card mb-1">
-    <h6>Task name</h6>
+    <h6>Task</h6>
     <input type="text" name="task" class="task_input" value="<?php echo $task['task'] ?>">
     <h6>Description</h6>
     <input type="text" name="description" class="task_input" value="<?php echo $task['description']; ?>">
@@ -28,5 +29,5 @@ changeTaskFromPage($taskC, $id);
   </form>
 
 </div>
-<a href="index.php" class="card-link">Go To Start Page</a>
+<a href="index.php" class="card-link">See all tasks</a>
 </div>
