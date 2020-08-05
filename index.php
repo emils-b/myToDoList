@@ -16,6 +16,12 @@ include_once "classes/TasksContr.php";
 </head>
 <body style="background-color: #f9f9fa">
 
+	<style>
+		.jumbotron {
+			background-color: #2163af;
+		}
+	</style>
+
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="display-4">My To Do List App</h1>
